@@ -52,39 +52,39 @@ def formula1c():
 # sentence: some people are students, some people are teacher. 
 # There exists at least 1 student and 1 teacher, any person must either be a student or a teacher. 
 # only student can learn, and only teacher can teach. Every student must have at least one teacher
-def formula2a():
-    # Predicates to use:
-    def Student(x): return Atom('Student', x)
-    def Teacher(x): return Atom('Teacher', x)
-    def Teaches(x, y): return Atom('Teaches', x, y)
-    # BEGIN_YOUR_CODE
-    x = Variable('$x')
-    y = Variable('$y')
-    z = Variable('$z')
-    return AndList([
-        Exists('$x', Student(x)),
-        Exists('$y', Teacher(y)),
-        Forall('$x', Or(Student(x), Teacher(x))),
-        Forall('$x', Implies(Student(x), Forall('$y', Not(Teaches(x, y))))),
-        Forall('$x', Implies(Teacher(x), Forall('$y', Not(Teaches(y, x))))),
-        Forall('$x', Implies(Student(x), Exists('$y', And(Teacher(y), Teaches(y, x)))))
-    ])
-    # raise Exception("Not implemented yet")
+# def formula2a():
+#     # Predicates to use:
+#     def Student(x): return Atom('Student', x)
+#     def Teacher(x): return Atom('Teacher', x)
+#     def Teaches(x, y): return Atom('Teaches', x, y)
+#     # BEGIN_YOUR_CODE
+#     x = Variable('$x')
+#     y = Variable('$y')
+#     z = Variable('$z')
+#     return AndList([
+#         Exists('$x', Student(x)),
+#         Exists('$y', Teacher(y)),
+#         Forall('$x', Or(Student(x), Teacher(x))),
+#         Forall('$x', Implies(Student(x), Forall('$y', Not(Teaches(x, y))))),
+#         Forall('$x', Implies(Teacher(x), Forall('$y', Not(Teaches(y, x))))),
+#         Forall('$x', Implies(Student(x), Exists('$y', And(Teacher(y), Teaches(y, x)))))
+#     ])
+#     # raise Exception("Not implemented yet")
 
-# sentence: Teacher can also learn from teacher, but student cannot teach
-def formula2b():
-    # Predicates to use:
-    def Student(x): return Atom('Student', x)
-    def Teacher(x): return Atom('Teacher', x)
-    def Teaches(x, y): return Atom('Teaches', x, y)
-    # BEGIN_YOUR_CODE
-    x = Variable('$x')
-    y = Variable('$y')
-    return AndList([
-        Forall('$x', Implies(Teacher(x), Exists('$y', And(Teacher(y), Teaches(y, x))))),
-        Forall('$x', Implies(Student(x), Forall('$y', Not(Teaches(x, y)))))
-    ])
-    # raise Exception("Not implemented yet")
+# # sentence: Teacher can also learn from teacher, but student cannot teach
+# def formula2b():
+#     # Predicates to use:
+#     def Student(x): return Atom('Student', x)
+#     def Teacher(x): return Atom('Teacher', x)
+#     def Teaches(x, y): return Atom('Teaches', x, y)
+#     # BEGIN_YOUR_CODE
+#     x = Variable('$x')
+#     y = Variable('$y')
+#     return AndList([
+#         Forall('$x', Implies(Teacher(x), Exists('$y', And(Teacher(y), Teaches(y, x))))),
+#         Forall('$x', Implies(Student(x), Forall('$y', Not(Teaches(x, y)))))
+#     ])
+#     # raise Exception("Not implemented yet")
 
 
 
